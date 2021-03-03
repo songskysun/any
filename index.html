@@ -5,14 +5,19 @@
     </head>
     <body>
         <div id="app">
-            <child-comp v-bind:prop1="message"></child-comp>
+            <!--v-on:이벤트명="상위컴포넌트 메소드명"-->
+            <child-comp v-on:show-log="logMessage"></child-comp>
         </div>
         <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script>
             Vue.component('child-comp', {
-                props: ['prop1'],
-                template: '<p>props ----> {{prop1}}</p>'
+                template: '<button @click="showLog">show</button>',
+                methods: {
+                    showLog : function(){
+                        this.$emit('show-log');
+                    }
+                }
             });
 
             var app = new Vue({
@@ -20,6 +25,11 @@
                 data: {
                     message: 'hello Vue !'
                 },
+                methods : {
+                    logMessage : function () {
+                        console.log('recieved Success');
+                    }
+                }
             });
         </script>
     </body>
