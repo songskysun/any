@@ -6,14 +6,28 @@
     <body>
         <div id="app">
             {{message}}
+            <firstcomp1></firstcomp1>
+            <local-component></local-component>
         </div>
         <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script>
+            //컴포넌트 이름에 대문자가 들어가니 오류가 발생함
+            Vue.component('firstcomp1', {
+                template: '<div>이것은 전역컴포넌트 입니다.</div>'
+            });
+            //지역 컴포넌트도 template 객체 안에 작성해줘야 한다.
+            var cmp = {
+                template : '<div>이것은 지역 컴포넌트 입니다.</div>'
+            };
+
             var app = new Vue({
                 el: '#app',
                 data: {
                     message: 'hello Vue !'
+                },
+                components : {
+                    'local-component' : cmp
                 }
             });
         </script>
