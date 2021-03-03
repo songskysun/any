@@ -5,30 +5,35 @@
     </head>
     <body>
         <div id="app">
-            <!--v-on:이벤트명="상위컴포넌트 메소드명"-->
-            <child-comp v-on:show-log="logMessage"></child-comp>
+            {{datas}}
+            <child-comp></child-comp>
         </div>
         <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script>
+            var eventBus = new Vue();
+            var number = 0;
+
             Vue.component('child-comp', {
-                template: '<button @click="showLog">show</button>',
-                methods: {
-                    showLog : function(){
-                        this.$emit('show-log');
+                template : '<div>하위 컴포넌트 영역 입니다. <button @click="showLog">buttons</button></div>',
+                methods : {
+                    showLog :  function () {
+                        eventBus.$emit('triggerEventBus', 100)
                     }
                 }
             });
 
             var app = new Vue({
                 el: '#app',
-                data: {
-                    message: 'hello Vue !'
+                data : {
+                    datas : number
                 },
-                methods : {
-                    logMessage : function () {
-                        console.log('recieved Success');
-                    }
+                created : function () {
+                    eventBus.$on('triggerEventBus', function(value){
+                        console.log(value);
+                        number += value
+                        console.log(number);
+                    });
                 }
             });
         </script>
