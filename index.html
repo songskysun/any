@@ -6,48 +6,22 @@
     <body>
         <div id="app">
             <h1>Vue Route Example</h1>
-            <router-view></router-view>
+            <button @click="getData">button</button>
         </div>
         <!-- 개발버전, 도움되는 콘솔 경고를 포함. -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script>
-            var User = {
-                template: `
-                    <div>
-                        User Component
-                        <router-view></router-view>
-                    </div>
-                `
-            };
-
-            var UserProfile = {template: '<p>user profile</p>'};
-            var UserPost = {template: '<p>user post</p>'};
-
-            var routes = [
-                {
-                    path: '/user',
-                    component: User,
-                    children: [
-                        {
-                        path: '/post',
-                        component: UserPost
-                        },
-                        {
-                            path: '/profile',
-                            component: UserProfile
-                        }
-                    ]
-                }
-            ];
-            
-            var router = new VueRouter({
-                routes
-            });
-
             var app = new Vue({
-                router
-            }).$mount('#app');
+                el: '#app',
+                methods : {
+                    getData: ()=>{
+                        axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json').then((res, err)=>{
+                            console.log(res);
+                        });
+                    }
+                }
+            });
         </script>
     </body>
 </html>
