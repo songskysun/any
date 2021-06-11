@@ -1,2 +1,1 @@
-# classicVue
-# classicVue
+# vue.js practice repository
