@@ -1,1 +1,4 @@
-# vue.js practice repository
+practice repository
+======
+
+>영화 타짜에서 아귀가 "고깃값을 번다라는 개념으로 접근한다" 라는 대사를 인용해 잔디값을 번다라는 개념으로 연습하는 저장소
