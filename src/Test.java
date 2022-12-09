@@ -7,7 +7,7 @@ public class Test {
         for (int score : scores) {
             sum += score;
         }
-
+//
         System.out.println("합계 : " + sum);
         System.out.println("평균 : " + sum/scores.length);
     }
